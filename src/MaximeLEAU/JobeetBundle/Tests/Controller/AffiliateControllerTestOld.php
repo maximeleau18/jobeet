@@ -69,58 +69,62 @@ class AffiliateControllerTest extends WebTestCase
 	}
 
 	public function testAffiliateForm()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/en/affiliate/new');
+	{
+		$client = static::createClient();
+		$crawler = $client->request('GET', '/affiliate/new');
 
-        $this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::newAction', $client->getRequest()->attributes->get('_controller'));
+		$this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::newAction', $client->getRequest()->attributes->get('_controller'));
 
-        $form = $crawler->selectButton('Submit')->form(array(
-            'affiliate[url]'   => 'http://sensio-labs.com/',
-            'affiliate[email]' => 'fabien.potencier@example.com'
-        ));
+		$form = $crawler->selectButton('Submit')->form(array(
+				'affiliate[url]' => 'http://sensio-labs.com/',
+				'affiliate[email]' => 'jobeet@example.com'
+		));
 
-        $client->submit($form);
-        $this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::createAction', $client->getRequest()->attributes->get('_controller'));
+		$client->submit($form);
+		$this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::createAction', $client->getRequest()->attributes->get('_controller'));
 
-        $kernel = static::createKernel();
-        $kernel->boot();
-        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+		$kernel = static::createKernel();
+		$kernel->boot();
+		$em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $crawler = $client->request('GET', '/en/affiliate/new');
-        $form = $crawler->selectButton('Submit')->form(array(
-            'affiliate[email]'        => 'not.an.email',
-        ));
-        $crawler = $client->submit($form);
+		$query = $em->createQuery('SELECT count(a.email) FROM MaximeLEAUJobeetBundle:Affiliate a WHERE a.email = :email');
+		$query->setParameter('email', 'jobeet@example.com');
+		$this->assertEquals(1, $query->getSingleScalarResult());
 
-        // check if we have 1 errors
-        $this->assertTrue($crawler->filter('.error_list')->count() == 1);
-        // check if we have error on affiliate_email field
-        $this->assertTrue($crawler->filter('#affiliate_email')->siblings()->first()->filter('.error_list')->count() == 1);
-    }
+		$crawler = $client->request('GET', '/affiliate/new');
+		$form = $crawler->selectButton('Submit')->form(array(
+				'affiliate[email]'        => 'not.an.email',
+		));
+		$crawler = $client->submit($form);
+
+		// check if we have 1 errors
+		$this->assertTrue($crawler->filter('.error_list')->count() == 1);
+		// check if we have error on affiliate_email field
+		$this->assertTrue($crawler->filter('#affiliate_email')->siblings()->first()->filter('.error_list')->count() == 1);
+	}
 
 	public function testCreate()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/en/affiliate/new');
-        $form = $crawler->selectButton('Submit')->form(array(
-            'affiliate[url]'   => 'http://sensio-labs.com/',
-            'affiliate[email]' => 'address@example.com'
-        ));
+	{
+		$client = static::createClient();
+		$crawler = $client->request('GET', '/affiliate/new');
+		$form = $crawler->selectButton('Submit')->form(array(
+				'affiliate[url]' => 'http://sensio-labs.com/',
+				'affiliate[email]' => 'address@example.com'
+		));
 
-        $client->submit($form);
-        $client->followRedirect();
+		$client->submit($form);
+		$client->followRedirect();
 
-        $this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::waitAction', $client->getRequest()->attributes->get('_controller'));
+		$this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::waitAction', $client->getRequest()->attributes->get('_controller'));
 
-        return $client;
-    }
+		return $client;
+	}
 
 	public function testWait()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/en/affiliate/wait');
+	{
+		$client = static::createClient();
+		$crawler = $client->request('GET', '/affiliate/wait');
 
-        $this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::waitAction', $client->getRequest()->attributes->get('_controller'));
-    }
+		$this->assertEquals('MaximeLEAU\JobeetBundle\Controller\AffiliateController::waitAction', $client->getRequest()->attributes->get('_controller'));
+	}
 }
