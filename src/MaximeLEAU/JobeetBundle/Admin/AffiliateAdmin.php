@@ -10,6 +10,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use MaximeLEAU\JobeetBundle\Entity\Affiliate;
 use Sonata\AdminBundle\Route\RouteCollection;
 
+/**
+ * Affiliate Admin Class
+ * @author Maxime Léau
+ *
+ */
 class AffiliateAdmin extends Admin
 {
 	protected $datagridValues = array(
@@ -18,6 +23,11 @@ class AffiliateAdmin extends Admin
         'is_active' => array('value' => 2) // The value 2 represents that the displayed affiliate accounts are not activated yet
     );
 
+	/**
+	 * 
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureFormFields()
+	 */
 	protected function configureFormFields(FormMapper $formMapper)
 	{
 		$formMapper
@@ -26,6 +36,10 @@ class AffiliateAdmin extends Admin
 		;
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureDatagridFilters()
+	 */
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
 		$datagridMapper
@@ -33,6 +47,10 @@ class AffiliateAdmin extends Admin
 		->add('is_active');
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureListFields()
+	 */
 	protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -46,6 +64,10 @@ class AffiliateAdmin extends Admin
         ;
     }
 	
+    /**
+     * (non-PHPdoc)
+     * @see \Sonata\AdminBundle\Admin\Admin::getBatchActions()
+     */
 	public function getBatchActions()
 	{
 		$actions = parent::getBatchActions();
@@ -65,6 +87,12 @@ class AffiliateAdmin extends Admin
 		return $actions;
 	}
 	
+	/**
+	 * Configure routes to activate or deactivate an affiliate
+	 * 
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureRoutes()
+	 */
 	protected function configureRoutes(RouteCollection $collection) {
 		parent::configureRoutes($collection);
 	

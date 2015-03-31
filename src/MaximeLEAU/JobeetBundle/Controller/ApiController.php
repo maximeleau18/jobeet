@@ -9,8 +9,20 @@ use MaximeLEAU\JobeetBundle\Entity\Affiliate;
 use MaximeLEAU\JobeetBundle\Entity\Job;
 use MaximeLEAU\JobeetBundle\Repository\AffiliateRepository;
 
+/**
+ * API Controller Class
+ * @author Maxime Léau
+ *
+ */
 class ApiController extends Controller
 {
+	/**
+	 * Return the jobs page that you have decided to affiliate
+	 * 
+	 * @param Request $request
+	 * @param string $token
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function listAction(Request $request, $token)
 	{
 		$em = $this->getDoctrine()->getManager();

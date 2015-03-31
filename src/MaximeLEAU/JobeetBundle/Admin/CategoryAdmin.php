@@ -8,6 +8,11 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 
+/**
+ * Category Admin Class
+ * @author Maxime Léau
+ *
+ */
 class CategoryAdmin extends Admin
 {
 	// setup the default sort column and order
@@ -16,6 +21,10 @@ class CategoryAdmin extends Admin
 			'_sort_by' => 'name'
 	);
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureFormFields()
+	 */
 	protected function configureFormFields(FormMapper $formMapper)
 	{
 		$formMapper
@@ -24,6 +33,10 @@ class CategoryAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureDatagridFilters()
+	 */
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
 		$datagridMapper
@@ -31,6 +44,10 @@ class CategoryAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureListFields()
+	 */
 	protected function configureListFields(ListMapper $listMapper)
 	{
 		$listMapper

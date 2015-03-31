@@ -13,6 +13,7 @@ class CategoryController extends Controller
 {
 	/**
 	 * Display category's active jobs by slug string and page
+	 * 
 	 * @param string $slug
 	 * @param integer $page
 	 * @return \Symfony\Component\HttpFoundation\Response

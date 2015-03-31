@@ -7,8 +7,18 @@ use MaximeLEAU\JobeetBundle\Form\AffiliateType;
 use Symfony\Component\HttpFoundation\Request;
 use MaximeLEAU\JobeetBundle\Entity\Category;
 
+/**
+ * Affiliate Controller Class
+ * @author Maxime Léau
+ *
+ */
 class AffiliateController extends Controller
 {
+	/**
+	 * Display the affiliate new form
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function newAction()
 	{
 		$entity = new Affiliate();
@@ -20,6 +30,12 @@ class AffiliateController extends Controller
 		));
 	}
 	
+	/**
+	 * Return the wait page is form is valid or the create form with errors
+	 * 
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function createAction(Request $request)
 	{
 		$affiliate = new Affiliate();
@@ -46,6 +62,11 @@ class AffiliateController extends Controller
 		));
 	}
 	
+	/**
+	 * Display the wait page
+	 * 	 
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function waitAction()
 	{
 		return $this->render('MaximeLEAUJobeetBundle:Affiliate:wait.html.twig');

@@ -17,7 +17,7 @@ class JobController extends Controller
 {
 
     /**
-     * Lists all categories and set active jobs for each category.
+     * Return the active's job's list page filtered by cataegory
      *
      */    
 	public function indexAction()
@@ -58,8 +58,9 @@ class JobController extends Controller
 	}
 	
 	/**
+	 * Return the previow's page for the job identify by its token
 	 * 
-	 * @param The Job token $token
+	 * @param string $token
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function previewAction($token)
@@ -85,9 +86,10 @@ class JobController extends Controller
 	}
 	
 	/**
+	 * Publish the job identify by its token
 	 * 
 	 * @param Request $request
-	 * @param The Job token $token
+	 * @param string $token
 	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
 	 */
 	public function publishAction(Request $request, $token)
@@ -119,8 +121,9 @@ class JobController extends Controller
 	}
 	
 	/**
+	 * Return the published job page
 	 * 
-	 * @param The Job token $token
+	 * @param string $token
 	 * @return \Symfony\Component\Form\Form
 	 */
 	private function createPublishForm($token)
@@ -132,8 +135,10 @@ class JobController extends Controller
 	}
 
     /**
-     * Creates a new Job entity.
-     *
+     * Display the preview's pageof the job if the form is valid
+     * 
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
 	public function createAction(Request $request)
 	{
@@ -162,7 +167,7 @@ class JobController extends Controller
 	}
 
     /**
-     * Creates a form to create a Job entity.
+     * Display the form to create a Job entity.
      *
      * @param Job $entity The entity
      *
@@ -197,8 +202,10 @@ class JobController extends Controller
     }
 
     /**
-     * Finds and displays a Job entity.
-     *
+     * Display a list of action for the job, identify by its id
+     * 
+     * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction($id)
     {        
@@ -235,8 +242,10 @@ class JobController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Job entity.
-     *
+     * 	Display the edit job form, identify by its id
+     * 
+     * @param string $token
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction($token)
     {
@@ -282,8 +291,11 @@ class JobController extends Controller
     }
     
     /**
-     * Edits an existing Job entity.
-     *
+     * Update the job identify by its token
+     * 
+     * @param Request $request
+     * @param string $token
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Request $request, $token)
     {
@@ -320,8 +332,11 @@ class JobController extends Controller
     }    
     
     /**
-     * Deletes a Job entity.
-     *
+     * Delete the job identify by its token
+     * 
+     * @param Request $request
+     * @param string $token
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, $token)
     {
@@ -344,11 +359,10 @@ class JobController extends Controller
     }
 
     /**
-     * Creates a form to delete a Job entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return Symfony\Component\Form\Form The form
+     * Creates a form to delete the job identify by its token
+     * 
+     * @param string $token
+     * @return \Symfony\Component\Form\Form
      */
     private function createDeleteForm($token)
     {
@@ -362,7 +376,7 @@ class JobController extends Controller
      * Extends job's validity action
      * 
      * @param Request $request
-     * @param The job token $token
+     * @param string $token
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function extendAction(Request $request, $token)
@@ -401,7 +415,7 @@ class JobController extends Controller
     /**
      * Create form to extend job's validity
      * 
-     * @param The job token  $token
+     * @param string $token
      * @return \Symfony\Component\Form\Form
      */
     private function createExtendForm($token)

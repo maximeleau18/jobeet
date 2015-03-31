@@ -10,6 +10,11 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use MaximeLEAU\JobeetBundle\Entity\Job;
 
+/**
+ * Job Admin Class
+ * @author Maxime Léau
+ *
+ */
 class JobAdmin extends Admin
 {
 	// setup the defaut sort column and order
@@ -18,6 +23,10 @@ class JobAdmin extends Admin
 			'_sort_by' => 'created_at'
 	);
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureFormFields()
+	 */
 	protected function configureFormFields(FormMapper $formMapper)
 	{
 		$formMapper
@@ -36,6 +45,10 @@ class JobAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureDatagridFilters()
+	 */
 	protected function configureDatagridFilters(DatagridMapper $datagridMapper)
 	{
 		$datagridMapper
@@ -50,6 +63,10 @@ class JobAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::configureListFields()
+	 */
 	protected function configureListFields(ListMapper $listMapper)
 	{
 		$listMapper
@@ -71,6 +88,10 @@ class JobAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * 
+	 * @param ShowMapper $showMapper
+	 */
 	protected function configureShowField(ShowMapper $showMapper)
 	{
 		$showMapper
@@ -91,6 +112,10 @@ class JobAdmin extends Admin
 		;
 	}
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see \Sonata\AdminBundle\Admin\Admin::getBatchActions()
+	 */
 	public function getBatchActions()
 	{
 		// retrieve the default (currently only the delete action) actions

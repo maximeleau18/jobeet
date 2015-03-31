@@ -5,13 +5,29 @@ namespace MaximeLEAU\JobeetBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+/**
+ * Default Contrller Class
+ * @author Maxime Léau
+ *
+ */
 class DefaultController extends Controller
 {
+	/**
+	 * Display the homepage
+	 * 
+	 * @param unknown $name
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
     public function indexAction($name)
     {
         return $this->render('MaximeLEAUJobeetBundle:Default:index.html.twig', array('name' => $name));
     }
     
+    /**
+     * Return the homepage with errors if someone exists
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function loginAction()
     {
     	$request = $this->getRequest();
@@ -32,6 +48,11 @@ class DefaultController extends Controller
     	));
     }
     
+    /**
+     * Return the homepage with the selected language
+     * 
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function changeLanguageAction()
     {
     	$language = $this->getRequest()->get('language');

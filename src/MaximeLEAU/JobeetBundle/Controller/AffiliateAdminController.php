@@ -6,8 +6,20 @@ use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery as ProxyQueryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 
+/**
+ * Affiliate Admin Controller Class
+ * @author Maxime Léau
+ *
+ */
 class AffiliateAdminController extends Controller
 {
+	/**
+	 * Activate an affiliate in database
+	 * 
+	 * @param ProxyQueryInterface $selectedModelQuery
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function batchActionActivate(ProxyQueryInterface $selectedModelQuery)
 	{
 		if($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false) {
@@ -45,6 +57,13 @@ class AffiliateAdminController extends Controller
 		return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
 	}
 	
+	/**
+	 * Deactivate an affiliate in database
+	 * 
+	 * @param ProxyQueryInterface $selectedModelQuery
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function batchActionDeactivate(ProxyQueryInterface $selectedModelQuery)
 	{
 		if($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false) {
@@ -72,6 +91,13 @@ class AffiliateAdminController extends Controller
 		return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
 	}
 
+	/**
+	 * Active the affiliate by id
+	 * 
+	 * @param integer $id
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
     public function activateAction($id)
     {
        if($this->admin->isGranted('EDIT') === false) {
@@ -100,7 +126,14 @@ class AffiliateAdminController extends Controller
 
         return new RedirectResponse($this->admin->generateUrl('list',$this->admin->getFilterParameters()));
     }
-	
+    
+	/**
+	 * Deactivate the affiliate by id
+	 * 
+	 * @param integer $id
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function deactivateAction($id)
 	{
 		if($this->admin->isGranted('EDIT') === false) {

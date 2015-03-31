@@ -8,8 +8,18 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use MaximeLEAU\JobeetBundle\Entity\User;
 
+/**
+ * Jobeet Users Command Class
+ * 
+ * @author Maxime Léau
+ *
+ */
 class JobeetUsersCommand extends ContainerAwareCommand
 {
+	/**
+	 * (non-PHPdoc)
+	 * @see \Symfony\Component\Console\Command\Command::configure()
+	 */
 	protected function configure()
 	{
 		$this
@@ -20,6 +30,10 @@ class JobeetUsersCommand extends ContainerAwareCommand
 		;
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see \Symfony\Component\Console\Command\Command::execute()
+	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$username = $input->getArgument('username');

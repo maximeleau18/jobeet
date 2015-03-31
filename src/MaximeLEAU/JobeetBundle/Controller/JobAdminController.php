@@ -9,6 +9,13 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class JobAdminController extends Controller
 {
+	/**
+	 * Extend the job's validity in database
+	 * 
+	 * @param ProxyQueryInterface $selectedModelQuery
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function batchActionExtend(ProxyQueryInterface $selectedModelQuery)
 	{
 		if ($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false) {
@@ -40,6 +47,12 @@ class JobAdminController extends Controller
 		return true;
 	}
 	
+	/**
+	 * Delete the unactivated jobs in database
+	 * 
+	 * @throws AccessDeniedException
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
 	public function batchActionDeleteNeverActivated()
 	{
 		if ($this->admin->isGranted('EDIT') === false || $this->admin->isGranted('DELETE') === false) {
