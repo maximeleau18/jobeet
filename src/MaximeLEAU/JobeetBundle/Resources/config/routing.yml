@@ -21,6 +21,11 @@ MaximeLEAUJobeetBundle_category:
     requirements:
         _locale: en|fr
         
+# The route to change language        
+MaximeLEAUJobeetBundle_changeLanguage:
+    pattern: /change_language
+    defaults: { _controller: "MaximeLEAUJobeetBundle:Default:changeLanguage" }
+        
 # The api route 
 MaximeLEAUJobeetBundle_api:
     pattern: /api/{token}/jobs.{_format}
