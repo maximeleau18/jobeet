@@ -1,0 +1,47 @@
+MaximeLEAUJobeetBundle_job:
+    resource: "@MaximeLEAUJobeetBundle/Resources/config/routing/job.yml"
+    prefix:   /{_locale}/
+    requirements: 
+        _locale: en|fr
+    
+MaximeLEAUJobeetBundle_homepage: 
+    pattern:     /{_locale}/
+    defaults: { _controller: "MaximeLEAUJobeetBundle:Job:index" }
+    requirements: 
+        _locale: en|fr
+            
+MaximeLEAUJobeetBundle_nonlocalized:
+    pattern:  /
+    defaults: { _controller: "MaximeLEAUJobeetBundle:Job:index" }
+
+# The route to display category
+MaximeLEAUJobeetBundle_category:
+    pattern: /{_locale}/category/{slug}/{page}
+    defaults: { _controller: "MaximeLEAUJobeetBundle:Category:show", page: 1 }
+    requirements:
+        _locale: en|fr
+        
+# The api route 
+MaximeLEAUJobeetBundle_api:
+    pattern: /api/{token}/jobs.{_format}
+    defaults: {_controller: "MaximeLEAUJobeetBundle:Api:list"}
+    requirements:
+        _format: xml|json|yaml
+        
+# The affiliate route
+MaximeLEAUJobeetBundle_affiliate:
+    resource: "@MaximeLEAUJobeetBundle/Resources/config/routing/affiliate.yml"
+    prefix:   /{_locale}/affiliate
+    requirements:
+        _locale: en|fr
+        
+# The route to access to the login form
+login:
+    pattern:   /login
+    defaults:  { _controller: "MaximeLEAUJobeetBundle:Default:login" }
+login_check:
+    pattern:   /login_check
+    
+# The route to logout connected user
+logout:
+    pattern:   /logout

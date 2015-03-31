@@ -1,0 +1,27 @@
+services:
+    MaximeLEAU.jobeet.admin.category:
+        class: MaximeLEAU\JobeetBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Categories }
+        arguments:
+            - ~
+            - MaximeLEAU\JobeetBundle\Entity\Category
+            - 'MaximeLEAUJobeetBundle:CategoryAdmin'
+
+    MaximeLEAU.jobeet.admin.job:
+        class: MaximeLEAU\JobeetBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Jobs }
+        arguments:
+            - ~
+            - MaximeLEAU\JobeetBundle\Entity\Job
+            - 'MaximeLEAUJobeetBundle:JobAdmin'
+            
+    MaximeLEAU.jobeet.admin.affiliate:
+        class: MaximeLEAU\JobeetBundle\Admin\AffiliateAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Affiliates }
+        arguments:
+            - ~
+            - MaximeLEAU\JobeetBundle\Entity\Affiliate
+            - 'MaximeLEAUJobeetBundle:AffiliateAdmin'
