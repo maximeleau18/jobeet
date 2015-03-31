@@ -19,11 +19,10 @@
 				{{ include ('MaximeLEAUJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
                 
                 {% if category.morejobs %}
-                    <div class="more_jobs">
-                        and <a href="{{ path('MaximeLEAUJobeetBundle_category', { 'slug': category.slug }) }}">{{ category.morejobs }}</a>
-                        more...
-                    </div>
-                {% endif %}
+			        <div class="more_jobs">
+			            {% trans with {'%count%': '<a href="' ~ path('MaximeLEAUJobeetBundle_category', { 'slug': category.slug }) ~ '">' ~  category.morejobs ~ '</a>'} %}and %count% more...{% endtrans %}
+			        </div>
+			    {% endif %}
             </div>
         {% endfor %}
     </div>
