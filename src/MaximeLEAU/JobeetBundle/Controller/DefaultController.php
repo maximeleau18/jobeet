@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
 /**
- * Default Contrller Class
+ * Default Controller Class
  * @author Maxime Léau
  *
  */
